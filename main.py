@@ -24,9 +24,15 @@ parser.add_argument("--web_port",
         help="the port the web UI is listening on, default 9000",
         default=["9000"])
 
+parser.add_argument("--config",
+        type=str,
+        nargs=1,
+        help="the config file to be used",
+        default=["data.json"])
+
 args = parser.parse_args()
 
-rotator = Rotator(config)
+rotator = Rotator(args.config[0])
 webui = WebUI(args.web_host[0], args.web_port[0], rotator)
 
 t = Thread(target=webui.start)
