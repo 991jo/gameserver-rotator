@@ -12,7 +12,10 @@ log = logging.getLogger("gameserver-rotator")
 
 log.info("initialized logging")
 
-parser = argparse.ArgumentParser(description="Gameserver Rotator")
+parser = argparse.ArgumentParser(description=\
+        "Gameserver Rotator\n\n"\
+        "The gameservers given in the config file are started/stoped at the"\
+        "given time. A timetable is shown in the web ui.")
 parser.add_argument("--web_host",
         type=str,
         nargs=1,
@@ -27,7 +30,7 @@ parser.add_argument("--web_port",
 parser.add_argument("--config",
         type=str,
         nargs=1,
-        help="the config file to be used",
+        help="the config file to be used, default data.json",
         default=["data.json"])
 
 args = parser.parse_args()
