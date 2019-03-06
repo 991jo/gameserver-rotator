@@ -1,10 +1,10 @@
+import logging
+
 from datetime import datetime, timedelta
 from threading import Timer
 
 import subprocess
 import shlex
-
-import logging
 
 log = logging.getLogger("gameserver-rotator")
 

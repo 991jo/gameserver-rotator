@@ -1,0 +1,14 @@
+body{
+	margin: 0px;
+	width: 100%;
+}
+
+.gametable{
+	border-collapse: collapse;
+}
+
+.gametable table, .gametable tr, .gametable td{
+	border: 1px solid black;
+	padding: 0.2em;
+}
+

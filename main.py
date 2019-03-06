@@ -1,24 +1,20 @@
-import json
-import datetime
 import logging
+from threading import Thread
 
-from Event import Event
+from Rotator import Rotator
+from WebUI import WebUI
+
+config="data.json"
 
 logging.basicConfig(level=logging.INFO)
 log = logging.getLogger("gameserver-rotator")
 
 log.info("initialized logging")
 
-def json_event_parser(d):
-    return { k : v if k not in ["start_time", "stop_time"] else datetime.datetime.fromisoformat(v) for k,v in d.items()}
+rotator = Rotator(config)
+webui = WebUI("localhost", 9000, rotator)
 
-with open("data.json") as f:
-    input_list = json.load(f, object_hook=json_event_parser)
-
-log.info("data.json loaded")
-
-event_list = list()
-for event in input_list:
-    event_list.append(Event(**event))
+t = Thread(target=webui.start)
+t.start()
 
 log.info("Events sheduled")
